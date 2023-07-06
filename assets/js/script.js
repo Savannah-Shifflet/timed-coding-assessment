@@ -1,12 +1,34 @@
 var startPrompt = document.querySelector("#start")
 var questionContainer = document.querySelector("#questionContainer");
-// quiz function
-    function runQuiz() {
+
+
+var questions = [
+    {
+        question: "What is the correct HTML element to put JavaScript?",
+        answers: [
+            {text: "<js>", correct: false},
+            {text: "<javascript>", correct: false},
+            {text: "<script>", correct: true},
+            {text: "<scripting>", correct: false}
+        ]
+    },
+    {
+        question: "What does CSS stand for?",
+        answers: [
+            {text: "Cascading Style Sheets", correct: true},
+            {text: "Computer Style Sheets", correct: false},
+            {text: "Creative Style Sheets", correct: false},
+            {text: "Colorful Style Sheets", correct: false}
+        ]
+    }
+]
+
+
+function runQuiz() {
         
         
 
-    }
-        // question appears 
+}
         // four answer choices as buttons appear
         // when the button is clicked, it confirms if correct or incorrect (set data attribute to "correct" or "incorrect" for each answer?)    
     //if an answer is answered incorrectly, subtract time from clock 
