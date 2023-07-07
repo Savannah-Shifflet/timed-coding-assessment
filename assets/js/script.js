@@ -6,7 +6,7 @@ var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var answerCheck = document.querySelector("#answerCheck");
-var answerButton = document.querySelector(".answerButton");
+var enterScore = document.querySelector("#enterScore")
 var score = 0; 
 
 
@@ -109,6 +109,10 @@ timeEl.textContent = "Time: " + secondsLeft;
     }, 1000);
     }
 
+function endQuiz() {
+    questionContainer.setAttribute("style", "display:none");
+
+}
 // store scores in local storage 
     // key: 1,2,3, etc. 
     // data: SS - score
