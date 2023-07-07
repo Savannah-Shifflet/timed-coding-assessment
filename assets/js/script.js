@@ -6,7 +6,7 @@ var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var answerCheck = document.querySelector("#answerCheck");
-
+var answerButton = document.querySelector(".answerButton");
 var score
 
 
@@ -42,6 +42,31 @@ var questions = [
 
 var currentQuestion = 0;
 
+function setQuestions () {
+    questionPrompt.textContent = questions[currentQuestion].question;
+    choice1.textContent = questions[currentQuestion].answers[0].text;
+    choice2.textContent = questions[currentQuestion].answers[1].text;
+    choice3.textContent = questions[currentQuestion].answers[2].text;
+    choice4.textContent = questions[currentQuestion].answers[3].text;
+
+    choice1.dataset.answer = questions[currentQuestion].answers[0].correct;
+    choice2.dataset.answer = questions[currentQuestion].answers[1].correct;
+    choice3.dataset.answer = questions[currentQuestion].answers[2].correct;
+    choice4.dataset.answer = questions[currentQuestion].answers[3].correct;
+}
+
+function checkAnswer(event) {
+    if (event.target.dataset.answer) {
+        console.log(event.target.dataset.answer)
+        answerCheck.textContent = "Correct!";
+        score += 5;
+    } else {
+        console.log(event.target.dataset.answer)
+        answerCheck.textContent = "Wrong :(";
+        secondsLeft -= 5;
+    }
+}
+
 function runQuiz() {
     // TODO make questions random    
     // Math.floor(Math.random() * questions.length);
@@ -49,36 +74,33 @@ function runQuiz() {
     // if (allQuestionsUsed.includes(currentIndex)) {
     
     
-    function setQuestions () {
-        questionPrompt.textContent = questions[currentQuestion].question;
-        choice1.textContent = questions[currentQuestion].answers[0].text;
-        choice2.textContent = questions[currentQuestion].answers[1].text;
-        choice3.textContent = questions[currentQuestion].answers[2].text;
-        choice4.textContent = questions[currentQuestion].answers[3].text;
-    }
-    
-    function checkAnswer(event) {
-        
-        if (event.target.answer.correct) {
-            answerCheck.textContent = "Correct!";
-            score += 5;
-        } else {
-            answerCheck.textContent = "Wrong :(";
-            secondsLeft -= 5;
-        }
-    }
-
     if (currentQuestion<questions.length) {
+        
+        // console.log(currentQuestion);
         setQuestions();
         choice1.addEventListener("click", checkAnswer);
         choice2.addEventListener("click", checkAnswer);
         choice3.addEventListener("click", checkAnswer);
         choice4.addEventListener("click", checkAnswer);
-        currentQuestion++;
-        runQuiz();
+        // answerButton.addEventListener("click", function(event) {
+        //     console.log("test")
+        //     console.log(event.target.dataset.answer)
+        //     if (event.target.dataset.answer) {
+        //         answerCheck.textContent = "Correct!";
+        //         score += 5;
+        //         currentQuestion++;
+        //     } else  {
+        //         answerCheck.textContent = "Wrong :(";
+        //         secondsLeft -= 5;
+        //         currentQuestion++;
+        //     }
+        // });
+        
+        // runQuiz();
     } else {
         return; 
     }
+    
     
 
 }
