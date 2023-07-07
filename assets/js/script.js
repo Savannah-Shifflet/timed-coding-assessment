@@ -1,5 +1,13 @@
 var startPrompt = document.querySelector("#start")
 var questionContainer = document.querySelector("#questionContainer");
+var questionPrompt = document.querySelector("#questionPrompt");
+var choice1 = document.querySelector("#choice1");
+var choice2 = document.querySelector("#choice2");
+var choice3 = document.querySelector("#choice3");
+var choice4 = document.querySelector("#choice4");
+var answerCheck = document.querySelector("#answerCheck");
+
+var score
 
 
 var questions = [
@@ -20,15 +28,62 @@ var questions = [
             {text: "Creative Style Sheets", correct: false},
             {text: "Colorful Style Sheets", correct: false}
         ]
+    },
+    {
+        question: "what is my name?",
+        answers: [
+            {text: "savannah", correct: true},
+            {text: "tristan", correct: false},
+            {text: "andi", correct: false},
+            {text: "butters", correct: false}
+        ]
     }
 ]
 
+var currentQuestion = 0;
 
 function runQuiz() {
+    // TODO make questions random    
+    // Math.floor(Math.random() * questions.length);
+    // var allQuestionsUsed = []; 
+    // if (allQuestionsUsed.includes(currentIndex)) {
+    
+    
+    function setQuestions () {
+        questionPrompt.textContent = questions[currentQuestion].question;
+        choice1.textContent = questions[currentQuestion].answers[0].text;
+        choice2.textContent = questions[currentQuestion].answers[1].text;
+        choice3.textContent = questions[currentQuestion].answers[2].text;
+        choice4.textContent = questions[currentQuestion].answers[3].text;
+    }
+    
+    function checkAnswer(event) {
         
-        
+        if (event.target.answer.correct) {
+            answerCheck.textContent = "Correct!";
+            score += 5;
+        } else {
+            answerCheck.textContent = "Wrong :(";
+            secondsLeft -= 5;
+        }
+    }
+
+    if (currentQuestion<questions.length) {
+        setQuestions();
+        choice1.addEventListener("click", checkAnswer);
+        choice2.addEventListener("click", checkAnswer);
+        choice3.addEventListener("click", checkAnswer);
+        choice4.addEventListener("click", checkAnswer);
+        currentQuestion++;
+        runQuiz();
+    } else {
+        return; 
+    }
+    
 
 }
+    
+    
         // four answer choices as buttons appear
         // when the button is clicked, it confirms if correct or incorrect (set data attribute to "correct" or "incorrect" for each answer?)    
     //if an answer is answered incorrectly, subtract time from clock 
