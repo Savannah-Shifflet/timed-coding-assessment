@@ -7,7 +7,7 @@ var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var answerCheck = document.querySelector("#answerCheck");
 var answerButton = document.querySelector(".answerButton");
-var score
+var score = 0; 
 
 
 var questions = [
@@ -56,15 +56,15 @@ function setQuestions () {
 }
 
 function checkAnswer(event) {
-    if (event.target.dataset.answer) {
-        console.log(event.target.dataset.answer)
+    if (event.target.dataset.answer === "true") {
         answerCheck.textContent = "Correct!";
         score += 5;
+        console.log(score)
     } else {
-        console.log(event.target.dataset.answer)
         answerCheck.textContent = "Wrong :(";
         secondsLeft -= 5;
     }
+    runQuiz();
 }
 
 function runQuiz() {
@@ -82,6 +82,7 @@ function runQuiz() {
         choice2.addEventListener("click", checkAnswer);
         choice3.addEventListener("click", checkAnswer);
         choice4.addEventListener("click", checkAnswer);
+        console.log(score)
         // answerButton.addEventListener("click", function(event) {
         //     console.log("test")
         //     console.log(event.target.dataset.answer)
@@ -101,6 +102,8 @@ function runQuiz() {
         return; 
     }
     
+    currentQuestion++;
+    console.log(currentQuestion)
     
 
 }
@@ -114,8 +117,9 @@ function runQuiz() {
 var timeEl = document.querySelector("#timer");
     
 // Set timer to 50 seconds for the user (extra second to accommodate loading)
-var secondsLeft = 51; 
-    
+var secondsLeft = 50; 
+timeEl.textContent = "Time: " + secondsLeft;
+
     // Create timer function for when the start button is pressed
     function setTime() {
     // Sets interval in variable
