@@ -149,8 +149,9 @@ function endQuiz() {
         var scoreText = initialText + " - " + score;
         highScores.push(scoreText);
 
-        localStorage.setItems("highScores", JSON.stringify(highScores));
+        localStorage.setItem("highScores", JSON.stringify(highScores));
 
+        inputInitials.value = ""; 
     })
     // go to highscore html page now
 }
