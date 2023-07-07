@@ -59,7 +59,6 @@ function checkAnswer(event) {
     if (event.target.dataset.answer === "true") {
         answerCheck.textContent = "Correct!";
         score += 5;
-        console.log(score)
     } else {
         answerCheck.textContent = "Wrong :(";
         secondsLeft -= 5;
@@ -73,45 +72,18 @@ function runQuiz() {
     // var allQuestionsUsed = []; 
     // if (allQuestionsUsed.includes(currentIndex)) {
     
-    
     if (currentQuestion<questions.length) {
-        
-        // console.log(currentQuestion);
         setQuestions();
         choice1.addEventListener("click", checkAnswer);
         choice2.addEventListener("click", checkAnswer);
         choice3.addEventListener("click", checkAnswer);
         choice4.addEventListener("click", checkAnswer);
-        console.log(score)
-        // answerButton.addEventListener("click", function(event) {
-        //     console.log("test")
-        //     console.log(event.target.dataset.answer)
-        //     if (event.target.dataset.answer) {
-        //         answerCheck.textContent = "Correct!";
-        //         score += 5;
-        //         currentQuestion++;
-        //     } else  {
-        //         answerCheck.textContent = "Wrong :(";
-        //         secondsLeft -= 5;
-        //         currentQuestion++;
-        //     }
-        // });
-        
-        // runQuiz();
     } else {
         return; 
     }
-    
     currentQuestion++;
-    console.log(currentQuestion)
-    
-
+    console.log(currentQuestion);
 }
-    
-    
-        // four answer choices as buttons appear
-        // when the button is clicked, it confirms if correct or incorrect (set data attribute to "correct" or "incorrect" for each answer?)    
-    //if an answer is answered incorrectly, subtract time from clock 
 
 // Identifies the timer element in the HTML 
 var timeEl = document.querySelector("#timer");
@@ -150,8 +122,3 @@ function startQuiz() {
 
 var startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", startQuiz);
-
-// start game function: start page with start button
-    // when button is selected, the start button/info hides
-    // timer function is called 
-    // score storage function is called 
