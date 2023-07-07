@@ -74,6 +74,11 @@ function runQuiz() {
     
     if (currentQuestion<questions.length) {
         setQuestions();
+        
+        setTimeout(() =>{
+            answerCheck.textContent = "";
+        }, 2000);
+
         choice1.addEventListener("click", checkAnswer);
         choice2.addEventListener("click", checkAnswer);
         choice3.addEventListener("click", checkAnswer);
@@ -112,7 +117,7 @@ timeEl.textContent = "Time: " + secondsLeft;
 function endQuiz() {
     questionContainer.setAttribute("style", "display:none");
     // add child element in enterscore section of header: "Quiz Finished!"
-    enterScore.
+    // enterScore.
     // add child element in enterscore section of div: "Your final score is "
     // add input element for them to enter their initials with a submit button
     // store score in local storage
