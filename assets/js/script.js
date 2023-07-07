@@ -11,7 +11,7 @@ var answerCheck = document.querySelector("#answerCheck");
 var enterScore = document.querySelector("#enterScore")
 var score = 0; 
 var highScores = []; 
-
+var stopTime = 0; 
 
 var questions = [
     {
@@ -98,24 +98,27 @@ function runQuiz() {
 var secondsLeft = 50; 
 timeEl.textContent = "Time: " + secondsLeft;
 
-    // Create timer function for when the start button is pressed
-    function setTime() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-        secondsLeft--;
-        timeEl.textContent = "Time: " + secondsLeft;
-    
-        if(secondsLeft === 0) {
-            // Stops execution of action at set interval
-            clearInterval(timerInterval);
-            // end quiz when time is up or questions run out 
-            endQuiz();
-        }
+// Create timer function for when the start button is pressed
+function setTime() {
+// Sets interval in variable
+var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = "Time: " + secondsLeft;
 
-    }, 1000);
+    if (stopTime = 1) {
+        clearInterval(timerInterval);
+    } else if (secondsLeft === 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        // end quiz when time is up or questions run out 
+        endQuiz();
     }
 
+}, 1000);
+}
+
 function endQuiz() {
+    stopTime = 1;
     questionContainer.setAttribute("style", "display:none");
     // add child element in enterscore section of header: "Quiz Finished!"
     var finished = document.createElement("h3");
@@ -152,8 +155,11 @@ function endQuiz() {
         localStorage.setItem("highScores", JSON.stringify(highScores));
 
         inputInitials.value = ""; 
+        score = 0; 
+        stopTime = 0;
     })
-    // go to highscore html page now
+    // TODO go to highscore html page now
+    // TODO figure out how to stop timer if endQuiz happens 
 }
 
 // add highscore page functions for reset scores and go back
