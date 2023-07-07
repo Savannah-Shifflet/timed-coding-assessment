@@ -111,11 +111,17 @@ timeEl.textContent = "Time: " + secondsLeft;
 
 function endQuiz() {
     questionContainer.setAttribute("style", "display:none");
-
+    // add child element in enterscore section of header: "Quiz Finished!"
+    enterScore.
+    // add child element in enterscore section of div: "Your final score is "
+    // add input element for them to enter their initials with a submit button
+    // store score in local storage
+    // go to highscore html page now
 }
-// store scores in local storage 
-    // key: 1,2,3, etc. 
-    // data: SS - score
+
+// add highscore page functions for reset scores and go back
+
+// add reset game function 
 
 function startQuiz() {
     startPrompt.setAttribute("style", "display: none"); 
