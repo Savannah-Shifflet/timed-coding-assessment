@@ -87,7 +87,7 @@ function runQuiz() {
         choice3.addEventListener("click", checkAnswer);
         choice4.addEventListener("click", checkAnswer);
     } else {
-        return; 
+        endQuiz(); 
     }
     currentQuestion++;
     console.log(currentQuestion);
@@ -109,7 +109,7 @@ timeEl.textContent = "Time: " + secondsLeft;
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             // end quiz when time is up or questions run out 
-            // TODO: end quiz and call highscore entry function
+            endQuiz();
         }
 
     }, 1000);
@@ -155,7 +155,7 @@ function endQuiz() {
     })
     // go to highscore html page now
 }
-endQuiz();
+
 // add highscore page functions for reset scores and go back
 
 // add reset game function 
