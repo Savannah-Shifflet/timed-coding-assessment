@@ -117,6 +117,10 @@ var timerInterval = setInterval(function() {
 }, 1000);
 }
 
+function storeHighScore() {
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+}
+
 function endQuiz() {
     stopTime = 1;
     questionContainer.setAttribute("style", "display:none");
@@ -152,16 +156,26 @@ function endQuiz() {
         var scoreText = initialText + " - " + score;
         highScores.push(scoreText);
 
-        localStorage.setItem("highScores", JSON.stringify(highScores));
+        storeHighScore();
 
         inputInitials.value = ""; 
         score = 0; 
         stopTime = 0;
     })
     // TODO go to highscore html page now
-    // TODO figure out how to stop timer if endQuiz happens 
 }
 
+function init() {
+    // Get stored todos from localStorage
+    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+    
+    // If todos were retrieved from localStorage, update the todos array to it
+    if (storedHighScores !== null) {
+    highScores = storedHighScores;
+    }
+
+    // This is a helper function that will render todos to the DOM
+}
 // add highscore page functions for reset scores and go back
 
 // add reset game function 
@@ -175,3 +189,5 @@ function startQuiz() {
 
 var startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", startQuiz);
+
+init();
