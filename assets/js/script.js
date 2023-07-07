@@ -1,3 +1,5 @@
+// Identifies the timer element in the HTML 
+var timeEl = document.querySelector("#timer");
 var startPrompt = document.querySelector("#start")
 var questionContainer = document.querySelector("#questionContainer");
 var questionPrompt = document.querySelector("#questionPrompt");
@@ -8,6 +10,7 @@ var choice4 = document.querySelector("#choice4");
 var answerCheck = document.querySelector("#answerCheck");
 var enterScore = document.querySelector("#enterScore")
 var score = 0; 
+var highScores = []; 
 
 
 var questions = [
@@ -90,8 +93,6 @@ function runQuiz() {
     console.log(currentQuestion);
 }
 
-// Identifies the timer element in the HTML 
-var timeEl = document.querySelector("#timer");
     
 // Set timer to 50 seconds for the user (extra second to accommodate loading)
 var secondsLeft = 50; 
@@ -117,13 +118,43 @@ timeEl.textContent = "Time: " + secondsLeft;
 function endQuiz() {
     questionContainer.setAttribute("style", "display:none");
     // add child element in enterscore section of header: "Quiz Finished!"
-    // enterScore.
+    var finished = document.createElement("h3");
+    finished.textContent = "Quiz Finished!"
+    enterScore.appendChild(finished);
+
     // add child element in enterscore section of div: "Your final score is "
+    var finalScore = document.createElement("div");
+    finalScore.textContent = "Your final score is " + score;
+    enterScore.appendChild(finalScore);
+
     // add input element for them to enter their initials with a submit button
-    // store score in local storage
+    var inputInitials = document.createElement("input");
+    inputInitials.setAttribute("type", "text");
+    inputInitials.setAttribute("name", "initials");
+    inputInitials.setAttribute("placeholder", "Type your initials to save your score");
+    enterScore.appendChild(inputInitials);
+    
+    // submit button for initials input
+    var scoreSubmitButton = document.createElement("button");
+    scoreSubmitButton.textContent = "Submit";
+    enterScore.appendChild(scoreSubmitButton);
+
+    // add event listener for submit button to store score and initials in local storage
+    scoreSubmitButton.addEventListener("click", function() {
+        var initialText = inputInitials.value.trim();
+        if (initialText === "") {
+            return;
+        }
+
+        var scoreText = initialText + " - " + score;
+        highScores.push(scoreText);
+
+        localStorage.setItems("highScores", JSON.stringify(highScores));
+
+    })
     // go to highscore html page now
 }
-
+endQuiz();
 // add highscore page functions for reset scores and go back
 
 // add reset game function 
