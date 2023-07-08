@@ -141,9 +141,12 @@ function endQuiz() {
     enterScore.appendChild(inputInitials);
     
     // submit button for initials input
+    var submitLink = document.createElement("a");
+    submitLink.setAttribute("href", "./highscores.html");
     var scoreSubmitButton = document.createElement("button");
     scoreSubmitButton.textContent = "Submit";
-    enterScore.appendChild(scoreSubmitButton);
+    enterScore.appendChild(submitLink);
+    submitLink.appendChild(scoreSubmitButton);
 
     // add event listener for submit button to store score and initials in local storage
     scoreSubmitButton.addEventListener("click", function() {
@@ -162,7 +165,6 @@ function endQuiz() {
         score = 0; 
         stopTime = 0;
     })
-    // TODO go to highscore html page now
 }
 
 function init() {
