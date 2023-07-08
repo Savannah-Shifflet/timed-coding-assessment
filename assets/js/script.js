@@ -89,7 +89,6 @@ function runQuiz() {
         endQuiz(); 
     }
     currentQuestion++;
-    console.log(currentQuestion);
 }
 
     
@@ -206,7 +205,7 @@ function renderHighScores() {
 
 function startQuiz() {
     startPrompt.setAttribute("style", "display: none"); 
-    questionContainer.setAttribute("style", "display: block");
+    questionContainer.setAttribute("style", "display: flex; flex-direction: column; flex-wrap: wrap; justify-content: space-evenly; align-content: center");
     setTime(); 
     runQuiz();
 }

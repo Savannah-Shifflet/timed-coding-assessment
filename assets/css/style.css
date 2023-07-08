@@ -1,3 +1,23 @@
 #questionContainer {
     display: none;
 }
+
+button {
+    background-color: rgb(69, 69, 149);
+    color: white;
+    border-radius: 8px;
+    border-style: none;
+    max-width: fit-content;
+    margin: 3px;
+    cursor: pointer;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 35px;
+    padding: 10px;
+}
+
+button:hover,
+button:focus {
+  background-color: rgb(125, 125, 184);
+}
