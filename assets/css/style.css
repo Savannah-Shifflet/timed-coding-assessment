@@ -34,3 +34,16 @@ h1 {
 h2 {
     font-family: 'Quattrocento Sans', sans-serif;
 }
+
+#indexNav {
+    display: flex;
+    justify-content: space-between;
+}
+
+#indexNav a,
+#indexNav div{
+    text-decoration: none;
+    margin: 10px;
+    color: black;
+    font-weight: bold;
+}
