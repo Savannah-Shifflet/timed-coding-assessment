@@ -73,12 +73,7 @@ function checkAnswer(event) {
     runQuiz();
 }
 
-function runQuiz() {
-    // TODO make questions random    
-    // Math.floor(Math.random() * questions.length);
-    // var allQuestionsUsed = []; 
-    // if (allQuestionsUsed.includes(currentIndex)) {
-    
+function runQuiz() {    
     if (currentQuestion<questions.length) {
         setQuestions();
         
@@ -105,20 +100,20 @@ var secondsLeft = 50;
 // Create timer function for when the start button is pressed
 function setTime() {
 // Sets interval in variable
-var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = "Time: " + secondsLeft;
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = "Time: " + secondsLeft;
 
-    if (stopTime = 1) {
-        clearInterval(timerInterval);
-    } else if (secondsLeft === 0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        // end quiz when time is up or questions run out 
-        endQuiz();
-    }
+        if (stopTime = 1) {
+            clearInterval(timerInterval);
+        } else if (secondsLeft === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            // end quiz when time is up or questions run out 
+            endQuiz();
+        }
 
-}, 1000);
+    }, 1000);
 }
 
 function storeHighScore() {
@@ -154,7 +149,7 @@ function endQuiz() {
     scoreSubmitButton.addEventListener("click", function() {
         var initialText = inputInitials.value.trim();
         if (initialText === "") {
-            // todo add alert pop up 
+            window.alert("Please add your initials to save your score"); 
             return;
         }
 
@@ -171,11 +166,12 @@ function endQuiz() {
 }
 
 function init() {
-    // Get stored todos from localStorage
+    // Get stored high scores from localStorage
     if (localStorage.getItem("highScores") !== "") {
         storedHighScores = JSON.parse(localStorage.getItem("highScores"));
     }
-    // If todos were retrieved from localStorage, update the todos array to it
+
+    // If high scores were retrieved from localStorage, update the high scores array to it
     if (storedHighScores !== null) {
         highScores = storedHighScores;
     }
@@ -192,9 +188,6 @@ function init() {
     }
 }
 
-// startButton.addEventListener("click", startQuiz);
-console.log(window.location.pathname)
-// startButton.addEventListener("click", startQuiz);
 // add highscore page functions for reset scores and go back
 function renderHighScores() {
     if(highScores !== undefined) {
@@ -208,7 +201,6 @@ function renderHighScores() {
         }
     }
 }
-// add reset highScores function 
 
 function startQuiz() {
     startPrompt.setAttribute("style", "display: none"); 
@@ -218,4 +210,3 @@ function startQuiz() {
 }
 
 init();
-console.log(highScores)
