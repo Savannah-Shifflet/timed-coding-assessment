@@ -168,9 +168,12 @@ function endQuiz() {
     // TODO go to highscore html page now
 }
 
+console.log(localStorage.getItem("highScores"));
 function init() {
     // Get stored todos from localStorage
-    var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+    if (localStorage.getItem("highScores") !== "") {
+        var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+    }
     
     // If todos were retrieved from localStorage, update the todos array to it
     if (storedHighScores !== null) {
@@ -180,27 +183,32 @@ function init() {
     if (window.location.href.includes("highscores.html")) {
         renderHighScores();
         resetHighScoresButton.addEventListener("click", function () {
-            localStorage.setItem("highScores", "");
-            renderHighScores();
+            highScoreBoard.textContent = "";
+            highScores = [];
+            localStorage.setItem("highScores", highScores);
         });
-    } else {
+    } else if (window.location.pathname.includes("index")) {
         startButton.addEventListener("click", startQuiz);
     }
-    
 }
 
+// startButton.addEventListener("click", startQuiz);
+console.log(window.location.pathname)
+// startButton.addEventListener("click", startQuiz);
 // add highscore page functions for reset scores and go back
 function renderHighScores() {
-    for (i = 0; i < highScores.length; i++) {
-        var highScoreLI = highScores[i];
+    if(highScores !== undefined) {
+        for (i = 0; i < highScores.length; i++) {
+            var highScoreLI = highScores[i];
 
-        var li = document.createElement("li");
-        li.textContent = highScoreLI;
+            var li = document.createElement("li");
+            li.textContent = highScoreLI;
 
-        highScoreBoard.appendChild(li);
+            highScoreBoard.appendChild(li);
+        }
     }
 }
-// add reset game function 
+// add reset highScores function 
 
 function startQuiz() {
     startPrompt.setAttribute("style", "display: none"); 
