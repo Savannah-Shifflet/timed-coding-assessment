@@ -11,6 +11,7 @@ var choice4 = document.querySelector("#choice4");
 var answerCheck = document.querySelector("#answerCheck");
 var enterScore = document.querySelector("#enterScore");
 var highScoreBoard = document.querySelector("#highScoreBoard");
+var resetHighScoresButton = document.querySelector("#resetHighScores");
 var score = 0; 
 var highScores = []; 
 var stopTime = 0; 
@@ -178,6 +179,10 @@ function init() {
 
     if (window.location.href.includes("highscores.html")) {
         renderHighScores();
+        resetHighScoresButton.addEventListener("click", function () {
+            localStorage.setItem("highScores", "");
+            renderHighScores();
+        });
     } else {
         startButton.addEventListener("click", startQuiz);
     }
@@ -203,8 +208,5 @@ function startQuiz() {
     setTime(); 
     runQuiz();
 }
-
-
-
 
 init();
