@@ -15,6 +15,7 @@ var resetHighScoresButton = document.querySelector("#resetHighScores");
 var score = 0; 
 var highScores = []; 
 var stopTime = 0; 
+var storedHighScores = [];
 
 var questions = [
     {
@@ -153,6 +154,7 @@ function endQuiz() {
     scoreSubmitButton.addEventListener("click", function() {
         var initialText = inputInitials.value.trim();
         if (initialText === "") {
+            // todo add alert pop up 
             return;
         }
 
@@ -168,16 +170,14 @@ function endQuiz() {
     // TODO go to highscore html page now
 }
 
-console.log(localStorage.getItem("highScores"));
 function init() {
     // Get stored todos from localStorage
     if (localStorage.getItem("highScores") !== "") {
-        var storedHighScores = JSON.parse(localStorage.getItem("highScores"));
+        storedHighScores = JSON.parse(localStorage.getItem("highScores"));
     }
-    
     // If todos were retrieved from localStorage, update the todos array to it
     if (storedHighScores !== null) {
-    highScores = storedHighScores;
+        highScores = storedHighScores;
     }
 
     if (window.location.href.includes("highscores.html")) {
@@ -218,3 +218,4 @@ function startQuiz() {
 }
 
 init();
+console.log(highScores)
