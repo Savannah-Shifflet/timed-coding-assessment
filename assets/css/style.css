@@ -3,7 +3,7 @@
 }
 
 button {
-    background-color: rgb(69, 69, 149);
+    background-color: #454595;
     color: white;
     border-radius: 8px;
     border-style: none;
@@ -19,5 +19,18 @@ button {
 
 button:hover,
 button:focus {
-  background-color: rgb(125, 125, 184);
+    background-color: rgb(125, 125, 184);
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    background-color: #E5DCC5;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    font-family: 'Quattrocento Sans', sans-serif;
 }
