@@ -1,6 +1,7 @@
 // Identifies the timer element in the HTML 
 var timeEl = document.querySelector("#timer");
 var startPrompt = document.querySelector("#start")
+var startButton = document.querySelector("#start-button");
 var questionContainer = document.querySelector("#questionContainer");
 var questionPrompt = document.querySelector("#questionPrompt");
 var choice1 = document.querySelector("#choice1");
@@ -8,7 +9,8 @@ var choice2 = document.querySelector("#choice2");
 var choice3 = document.querySelector("#choice3");
 var choice4 = document.querySelector("#choice4");
 var answerCheck = document.querySelector("#answerCheck");
-var enterScore = document.querySelector("#enterScore")
+var enterScore = document.querySelector("#enterScore");
+var highScoreBoard = document.querySelector("#highScoreBoard");
 var score = 0; 
 var highScores = []; 
 var stopTime = 0; 
@@ -96,7 +98,7 @@ function runQuiz() {
     
 // Set timer to 50 seconds for the user (extra second to accommodate loading)
 var secondsLeft = 50; 
-timeEl.textContent = "Time: " + secondsLeft;
+// timeEl.textContent = "Time: " + secondsLeft;
 
 // Create timer function for when the start button is pressed
 function setTime() {
@@ -174,10 +176,25 @@ function init() {
     highScores = storedHighScores;
     }
 
-    // This is a helper function that will render todos to the DOM
+    if (window.location.href.includes("highscores.html")) {
+        renderHighScores();
+    } else {
+        startButton.addEventListener("click", startQuiz);
+    }
+    
 }
-// add highscore page functions for reset scores and go back
 
+// add highscore page functions for reset scores and go back
+function renderHighScores() {
+    for (i = 0; i < highScores.length; i++) {
+        var highScoreLI = highScores[i];
+
+        var li = document.createElement("li");
+        li.textContent = highScoreLI;
+
+        highScoreBoard.appendChild(li);
+    }
+}
 // add reset game function 
 
 function startQuiz() {
@@ -187,7 +204,7 @@ function startQuiz() {
     runQuiz();
 }
 
-var startButton = document.querySelector("#start-button");
-startButton.addEventListener("click", startQuiz);
+
+
 
 init();
