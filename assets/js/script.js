@@ -137,11 +137,12 @@ function endQuiz() {
     inputInitials.setAttribute("type", "text");
     inputInitials.setAttribute("name", "initials");
     inputInitials.setAttribute("placeholder", "Type your initials to save your score");
+    inputInitials.setAttribute('style', "width: 275px");
     enterScore.appendChild(inputInitials);
     
     // submit button for initials input
     var submitLink = document.createElement("a");
-    submitLink.setAttribute("href", "./highscores.html");
+    // submitLink.setAttribute("href", "./highscores.html");
     var scoreSubmitButton = document.createElement("button");
     scoreSubmitButton.textContent = "Submit";
     enterScore.appendChild(submitLink);
@@ -154,6 +155,8 @@ function endQuiz() {
             window.alert("Please add your initials to save your score"); 
             return;
         }
+
+        submitLink.setAttribute("href", "./highscores.html");
 
         var scoreText = initialText + " - " + score;
         highScores.push(scoreText);

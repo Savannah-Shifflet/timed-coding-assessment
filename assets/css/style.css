@@ -31,11 +31,18 @@ h1 {
     font-family: 'Montserrat', sans-serif;
 }
 
-h2 {
+h2,
+h3 {
     font-family: 'Quattrocento Sans', sans-serif;
 }
 
-header {
+h3 {
+    color:#454595;
+    font-size: x-large;
+}
+
+header,
+#enterScore {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,6 +60,12 @@ header div{
     justify-content: space-between;
 }
 
+#enterScore div,
+#enterScore input,
+#enterscore a {
+    margin: 10px;
+    
+}
 #indexNav a,
 #indexNav div{
     text-decoration: none;
