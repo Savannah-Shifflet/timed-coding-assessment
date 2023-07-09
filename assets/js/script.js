@@ -37,12 +37,75 @@ var questions = [
         ]
     },
     {
-        question: "what is my name?",
+        question: "What text should you only use once in an HTML page?",
         answers: [
-            { text: "savannah", correct: true },
-            { text: "tristan", correct: false },
-            { text: "andi", correct: false },
-            { text: "butters", correct: false }
+            { text: "<h1>", correct: true },
+            { text: "<h6>", correct: false },
+            { text: "<section>", correct: false },
+            { text: "<p>", correct: false }
+        ]
+    },
+    {
+        question: "How do you link a CSS stylesheet in HTML?",
+        answers: [
+            { text: "<a link = 'style'></a>", correct: false },
+            { text: "<link rel='stylesheet' href='./assets/css/style.css'>", correct: true },
+            { text: "<link rel = 'style' a = './assets/css/style.css>", correct: false },
+            { text: "<head rel = 'stylesheet'> href = style.css </head>", correct: false }
+        ]
+    },
+    {
+        question: "What kind of CSS selector is '*'?",
+        answers: [
+            { text: "element", correct: false },
+            { text: "id", correct: false },
+            { text: "class", correct: false },
+            { text: "universal", correct: true }
+        ]
+    },
+    {
+        question: "How can you ensure your web application is accessible?",
+        answers: [
+            { text: "Use <div> to separate content on the page", correct: false },
+            { text: "Use semantic HTML to define elements", correct: true },
+            { text: "Use a separate style.css file", correct: false },
+            { text: "Link images to sources on the web", correct: false }
+        ]
+    },
+    {
+        question: "Which of these DO NOT help with responseive web design?",
+        answers: [
+            { text: "Defining flex containers in CSS", correct: false },
+            { text: "Media queries in CSS", correct: true },
+            { text: "Assigning sidebars to 'aside' elements in HTML", correct: true },
+            { text: "Using the flex-wrap attributes", correct: false }
+        ]
+    },
+    {
+        question: "How do you assign a variable in JavaScript?",
+        answers: [
+            { text: "var variableName('string')", correct: false },
+            { text: "<variable name = var1> [array] </variable>", correct: false },
+            { text: "var('array', 'name = variable1')", correct: false },
+            { text: "var variableName = 'string'", correct: true }
+        ]
+    },
+    {
+        question: "Which is NOT a data type in JavaScript?",
+        answers: [
+            { text: "string", correct: false },
+            { text: "number", correct: false },
+            { text: "character", correct: true },
+            { text: "boolean", correct: false }
+        ]
+    },
+    {
+        question: "What does the .push method do?",
+        answers: [
+            { text: "Adds the characters to a string", correct: false },
+            { text: "Returns selected elements as a new array", correct: false },
+            { text: "Adds elements to end of an array", correct: true },
+            { text: "Replaces the last element in an array", correct: false }
         ]
     }
 ]
@@ -65,10 +128,12 @@ function setQuestions() {
 function checkAnswer(event) {
     if (event.target.dataset.answer === "true") {
         answerCheck.textContent = "Correct!";
+        answerCheck.setAttribute("style", "color: green; font-size: x-large")
         score += 5;
     } else {
         answerCheck.textContent = "Wrong :(";
         secondsLeft -= 5;
+        answerCheck.setAttribute("style", "color: red; font-size: x-large")
     }
     runQuiz();
 }
@@ -79,7 +144,7 @@ function runQuiz() {
 
         setTimeout(() => {
             answerCheck.textContent = "";
-        }, 2000);
+        }, 3000);
 
         choice1.addEventListener("click", checkAnswer);
         choice2.addEventListener("click", checkAnswer);
