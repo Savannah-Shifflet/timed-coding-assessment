@@ -18,7 +18,7 @@ button {
 }
 
 button:hover,
-button:focus {
+button:active {
     background-color: #7d7db8;
 }
 
@@ -62,21 +62,29 @@ header div{
 }
 
 #highScoreBoard {
-    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 #highScoreBoard li{
     list-style: none;
     background-color: #7d7db8ab;
-    margin: 10px;
+    margin-bottom: 10px;
     width: 30%;
     min-width: fit-content;
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 15px;
     border-radius: 2px;
     
 }
 
 #high-score-margin {
     margin: 10px;
+}
+
+#high-score-nav {
+    display:flex;
+    justify-content: space-around;
 }
