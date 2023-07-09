@@ -12,44 +12,44 @@ var answerCheck = document.querySelector("#answerCheck");
 var enterScore = document.querySelector("#enterScore");
 var highScoreBoard = document.querySelector("#highScoreBoard");
 var resetHighScoresButton = document.querySelector("#resetHighScores");
-var score = 0; 
-var highScores = []; 
-var stopTime = 0; 
+var score = 0;
+var highScores = [];
+var stopTime = 0;
 var storedHighScores = [];
 
 var questions = [
     {
         question: "What is the correct HTML element to put JavaScript?",
         answers: [
-            {text: "<js>", correct: false},
-            {text: "<javascript>", correct: false},
-            {text: "<script>", correct: true},
-            {text: "<scripting>", correct: false}
+            { text: "<js>", correct: false },
+            { text: "<javascript>", correct: false },
+            { text: "<script>", correct: true },
+            { text: "<scripting>", correct: false }
         ]
     },
     {
         question: "What does CSS stand for?",
         answers: [
-            {text: "Cascading Style Sheets", correct: true},
-            {text: "Computer Style Sheets", correct: false},
-            {text: "Creative Style Sheets", correct: false},
-            {text: "Colorful Style Sheets", correct: false}
+            { text: "Cascading Style Sheets", correct: true },
+            { text: "Computer Style Sheets", correct: false },
+            { text: "Creative Style Sheets", correct: false },
+            { text: "Colorful Style Sheets", correct: false }
         ]
     },
     {
         question: "what is my name?",
         answers: [
-            {text: "savannah", correct: true},
-            {text: "tristan", correct: false},
-            {text: "andi", correct: false},
-            {text: "butters", correct: false}
+            { text: "savannah", correct: true },
+            { text: "tristan", correct: false },
+            { text: "andi", correct: false },
+            { text: "butters", correct: false }
         ]
     }
 ]
 
 var currentQuestion = 0;
 
-function setQuestions () {
+function setQuestions() {
     questionPrompt.textContent = questions[currentQuestion].question;
     choice1.textContent = questions[currentQuestion].answers[0].text;
     choice2.textContent = questions[currentQuestion].answers[1].text;
@@ -73,11 +73,11 @@ function checkAnswer(event) {
     runQuiz();
 }
 
-function runQuiz() {    
-    if (currentQuestion<questions.length) {
+function runQuiz() {
+    if (currentQuestion < questions.length) {
         setQuestions();
-        
-        setTimeout(() =>{
+
+        setTimeout(() => {
             answerCheck.textContent = "";
         }, 2000);
 
@@ -86,30 +86,31 @@ function runQuiz() {
         choice3.addEventListener("click", checkAnswer);
         choice4.addEventListener("click", checkAnswer);
     } else {
-        endQuiz(); 
+        endQuiz();
     }
     currentQuestion++;
 }
 
-    
+
 // Set timer to 50 seconds for the user (extra second to accommodate loading)
-var secondsLeft = 50; 
+var secondsLeft = 50;
 // timeEl.textContent = "Time: " + secondsLeft;
 
 // Create timer function for when the start button is pressed
 function setTime() {
-// Sets interval in variable
-    var timerInterval = setInterval(function() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function () {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
 
-        if (stopTime = 1) {
+        if (stopTime === 1) {
             clearInterval(timerInterval);
         } else if (secondsLeft === 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             // end quiz when time is up or questions run out 
             endQuiz();
+        } else {
         }
 
     }, 1000);
@@ -139,7 +140,7 @@ function endQuiz() {
     inputInitials.setAttribute("placeholder", "Type your initials to save your score");
     inputInitials.setAttribute('style', "width: 275px");
     enterScore.appendChild(inputInitials);
-    
+
     // submit button for initials input
     var submitLink = document.createElement("a");
     // submitLink.setAttribute("href", "./highscores.html");
@@ -149,10 +150,10 @@ function endQuiz() {
     submitLink.appendChild(scoreSubmitButton);
 
     // add event listener for submit button to store score and initials in local storage
-    scoreSubmitButton.addEventListener("click", function() {
+    scoreSubmitButton.addEventListener("click", function () {
         var initialText = inputInitials.value.trim();
         if (initialText === "") {
-            window.alert("Please add your initials to save your score"); 
+            window.alert("Please add your initials to save your score");
             return;
         }
 
@@ -163,9 +164,9 @@ function endQuiz() {
 
         storeHighScore();
 
-        inputInitials.value = ""; 
-        score = 0; 
-        stopTime = 0;
+        inputInitials.value = "";
+        score = 0;
+        // stopTime = 0;
     })
 }
 
@@ -194,7 +195,7 @@ function init() {
 
 // add highscore page functions for reset scores and go back
 function renderHighScores() {
-    if(highScores !== undefined) {
+    if (highScores !== undefined) {
         for (i = 0; i < highScores.length; i++) {
             var highScoreLI = highScores[i];
 
@@ -207,9 +208,10 @@ function renderHighScores() {
 }
 
 function startQuiz() {
-    startPrompt.setAttribute("style", "display: none"); 
+    startPrompt.setAttribute("style", "display: none");
     questionContainer.setAttribute("style", "display: flex; flex-direction: column; flex-wrap: wrap; justify-content: space-evenly; align-content: center");
-    setTime(); 
+    stopTime = 0;
+    setTime();
     runQuiz();
 }
 
